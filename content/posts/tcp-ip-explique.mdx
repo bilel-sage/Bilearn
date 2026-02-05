@@ -1,0 +1,346 @@
+---
+title: "Comprendre TCP/IP : Le protocole qui fait tourner Internet"
+description: "Démystifie le protocole TCP/IP avec des explications simples et des exemples concrets. Guide complet pour comprendre comment Internet fonctionne."
+date: "2025-01-20"
+category: "reseaux"
+tags: ["tcp/ip", "réseaux", "protocoles", "internet"]
+author: "BiLearn"
+youtubeId: "dQw4w9WgXcQ"
+---
+
+## Introduction
+
+Quand tu ouvres ton navigateur et tapes "google.com", il se passe une quantité incroyable 
+de choses en coulisses. Et tout ça, c'est grâce à **TCP/IP** ! 🌐
+
+Dans ce guide, je vais t'expliquer comment fonctionne ce protocole qui fait tourner Internet, 
+avec des analogies simples et sans jargon inutile.
+
+## 🤔 C'est quoi TCP/IP ?
+
+**TCP/IP** = **Transmission Control Protocol / Internet Protocol**
+
+C'est en fait une **suite de protocoles** (un ensemble de règles) qui permettent aux 
+ordinateurs de communiquer entre eux sur Internet.
+
+### Analogie : La Poste 📬
+
+Imagine que tu veux envoyer une lettre :
+
+1. **Tu écris la lettre** → Les données
+2. **Tu la mets dans une enveloppe** → Le paquet TCP
+3. **Tu écris l'adresse du destinataire** → L'adresse IP
+4. **La poste l'achemine** → Le routage
+5. **Le destinataire la reçoit** → Destination
+
+TCP/IP fait exactement ça, mais pour les données informatiques !
+
+## 📚 Le modèle TCP/IP (4 couches)
+
+TCP/IP est organisé en **4 couches** :
+
+```
+┌──────────────────────────┐
+│  4. Application          │  ← HTTP, FTP, SSH, DNS
+├──────────────────────────┤
+│  3. Transport            │  ← TCP, UDP
+├──────────────────────────┤
+│  2. Internet             │  ← IP, ICMP, ARP
+├──────────────────────────┤
+│  1. Accès réseau         │  ← Ethernet, WiFi
+└──────────────────────────┘
+```
+
+### Couche 1 : Accès réseau (Link)
+- **Rôle** : Transmission physique des bits
+- **Exemples** : Câble Ethernet, WiFi, Fibre optique
+- **Comparable à** : Les routes physiques
+
+### Couche 2 : Internet (Network)
+- **Rôle** : Routage des paquets
+- **Protocole** : IP (Internet Protocol)
+- **Comparable à** : Le système postal qui achemine
+
+### Couche 3 : Transport
+- **Rôle** : Contrôle de la transmission
+- **Protocoles** : TCP (fiable) ou UDP (rapide)
+- **Comparable à** : Le service recommandé vs normal
+
+### Couche 4 : Application
+- **Rôle** : Services finaux
+- **Exemples** : HTTP (web), SMTP (email), SSH (connexion)
+- **Comparable à** : Le contenu de ta lettre
+
+## 🌐 IP : L'adresse Internet
+
+### IPv4 : Le format classique
+
+Une adresse IPv4 ressemble à ça :
+
+```
+192.168.1.100
+```
+
+C'est un nombre de **32 bits** divisé en **4 octets** (0-255).
+
+**Problème** : Il n'y a que ~4 milliards d'adresses possibles. Pas assez ! 😱
+
+### IPv6 : Le nouveau standard
+
+```
+2001:0db8:85a3:0000:0000:8a2e:0370:7334
+```
+
+C'est un nombre de **128 bits**. Il y a assez d'adresses pour donner une IP à chaque 
+grain de sable sur Terre ! 🏖️
+
+### Classes d'adresses
+
+| Classe | Plage | Usage |
+|--------|-------|-------|
+| A | 0.0.0.0 - 127.255.255.255 | Grands réseaux |
+| B | 128.0.0.0 - 191.255.255.255 | Réseaux moyens |
+| C | 192.0.0.0 - 223.255.255.255 | Petits réseaux |
+
+### Adresses privées (RFC 1918)
+
+Ces adresses ne sont **pas routables sur Internet** :
+
+- `10.0.0.0` - `10.255.255.255`
+- `172.16.0.0` - `172.31.255.255`
+- `192.168.0.0` - `192.168.255.255`
+
+C'est ce que tu as chez toi ! Ta box fait du **NAT** pour partager une IP publique.
+
+## 🔗 TCP : Le protocole fiable
+
+TCP garantit que :
+- ✅ Les données arrivent dans le bon ordre
+- ✅ Rien n'est perdu en route
+- ✅ Pas de doublons
+
+### Le Three-Way Handshake 🤝
+
+Avant d'envoyer des données, TCP fait une "poignée de main" :
+
+```
+Client                      Serveur
+   │                           │
+   │──────── SYN ──────────────>│  1. Demande de connexion
+   │                           │
+   │<──────── SYN-ACK ──────────│  2. Accord + demande retour
+   │                           │
+   │──────── ACK ──────────────>│  3. Confirmation finale
+   │                           │
+   │     Connexion établie      │
+```
+
+C'est comme si tu disais :
+1. "Je peux te parler ?" (SYN)
+2. "Oui, tu m'entends ?" (SYN-ACK)
+3. "Oui !" (ACK)
+
+### Les ports TCP
+
+Les **ports** permettent à plusieurs applications de communiquer en même temps :
+
+```
+┌────────────────────────────┐
+│   Ordinateur (IP: 1.2.3.4) │
+│                            │
+│   Port 80   → Serveur Web  │
+│   Port 22   → SSH          │
+│   Port 3306 → MySQL        │
+└────────────────────────────┘
+```
+
+Ports connus :
+- **20-21** : FTP
+- **22** : SSH
+- **25** : SMTP (email)
+- **80** : HTTP
+- **443** : HTTPS
+- **3306** : MySQL
+- **5432** : PostgreSQL
+
+## ⚡ UDP : Le protocole rapide
+
+**UDP** (User Datagram Protocol) est plus simple que TCP :
+- ❌ Pas de garantie de livraison
+- ❌ Pas de vérification d'ordre
+- ✅ Mais beaucoup plus **rapide** !
+
+**Usage** : Streaming vidéo, jeux en ligne, VoIP
+
+> Si TCP est un recommandé avec suivi, UDP est une carte postale !
+
+## 🛠️ Commandes réseau utiles
+
+### ping : Tester la connexion
+
+```bash
+ping google.com
+# PING google.com (142.250.185.46): 56 data bytes
+# 64 bytes from 142.250.185.46: icmp_seq=0 ttl=117 time=15.2 ms
+```
+
+### traceroute : Voir le chemin
+
+```bash
+traceroute google.com
+# 1  192.168.1.1 (192.168.1.1)  2.156 ms
+# 2  10.0.0.1 (10.0.0.1)  8.923 ms
+# 3  xe-0-0-0.par-core1.fr (80.10.255.61)  12.486 ms
+```
+
+### netstat : Voir les connexions
+
+```bash
+netstat -tuln
+# Proto  Local Address    Foreign Address    State
+# tcp    0.0.0.0:80       0.0.0.0:*          LISTEN
+# tcp    0.0.0.0:443      0.0.0.0:*          LISTEN
+```
+
+### ss : Version moderne de netstat
+
+```bash
+ss -tuln
+```
+
+### nslookup : Résolution DNS
+
+```bash
+nslookup google.com
+# Server:  8.8.8.8
+# Address: 8.8.8.8#53
+#
+# Name:    google.com
+# Address: 142.250.185.46
+```
+
+### curl : Tester HTTP
+
+```bash
+curl -I https://google.com
+# HTTP/2 200
+# content-type: text/html; charset=ISO-8859-1
+```
+
+## 🎯 Exemple pratique : Naviguer sur un site web
+
+Voyons ce qui se passe quand tu tapes `https://exemple.com` :
+
+### 1. Résolution DNS
+```
+Ton PC → Serveur DNS
+"Quelle est l'IP de exemple.com ?"
+Serveur DNS → Ton PC
+"C'est 93.184.216.34"
+```
+
+### 2. TCP Handshake
+```
+Ton PC → Serveur (93.184.216.34:443)
+SYN
+Serveur → Ton PC
+SYN-ACK
+Ton PC → Serveur
+ACK
+```
+
+### 3. Requête HTTP
+```
+GET / HTTP/1.1
+Host: exemple.com
+```
+
+### 4. Réponse du serveur
+```
+HTTP/1.1 200 OK
+Content-Type: text/html
+...
+<html>...</html>
+```
+
+### 5. Fermeture de connexion
+```
+Ton PC → Serveur
+FIN
+Serveur → Ton PC
+ACK + FIN
+Ton PC → Serveur
+ACK
+```
+
+## 📊 Comparaison TCP vs UDP
+
+| Caractéristique | TCP | UDP |
+|-----------------|-----|-----|
+| **Fiabilité** | Garantie | Non garantie |
+| **Ordre** | Préservé | Non préservé |
+| **Vitesse** | Plus lent | Rapide |
+| **Overhead** | Élevé | Faible |
+| **Usage** | Web, Email, FTP | Streaming, Gaming, DNS |
+
+## 🔒 Sécurité avec TCP/IP
+
+### Problèmes courants
+
+1. **IP Spoofing** : Falsifier l'adresse source
+2. **SYN Flood** : Saturer avec des demandes de connexion
+3. **Man-in-the-Middle** : Intercepter les communications
+
+### Solutions
+
+- **SSL/TLS** : Chiffrer les communications (HTTPS)
+- **VPN** : Tunnel sécurisé
+- **Firewall** : Filtrer le trafic
+- **IPsec** : Sécurité au niveau IP
+
+## 💡 Exercice pratique
+
+**Mission** : Analyse le trafic réseau de ton PC
+
+1. Installe Wireshark
+2. Lance une capture
+3. Ouvre un site web
+4. Identifie :
+   - Les requêtes DNS
+   - Le TCP handshake
+   - Les requêtes HTTP
+
+<details>
+<summary>Ce que tu vas voir 👇</summary>
+
+1. **DNS Query** : Demande de résolution de nom
+2. **DNS Response** : Réponse avec l'IP
+3. **TCP SYN** : Demande de connexion
+4. **TCP SYN-ACK** : Accord
+5. **TCP ACK** : Confirmation
+6. **HTTP GET** : Requête de la page
+7. **HTTP 200 OK** : Réponse avec le contenu
+8. **TCP FIN** : Fermeture de connexion
+
+</details>
+
+## 🚀 Prochaines étapes
+
+Maintenant que tu comprends TCP/IP :
+
+1. Apprends le [modèle OSI](#) (7 couches)
+2. Découvre [DNS en détail](#)
+3. Explore les [sous-réseaux et CIDR](#)
+4. Maîtrise [iptables et le firewall](#)
+
+## 📚 Ressources
+
+- [RFC 793 - TCP](https://tools.ietf.org/html/rfc793)
+- [RFC 791 - IP](https://tools.ietf.org/html/rfc791)
+- [Ma playlist YouTube Réseaux](#)
+- [Wireshark pour analyser le trafic](https://www.wireshark.org)
+
+---
+
+**Bravo !** Tu comprends maintenant comment Internet fonctionne sous le capot. 
+À toi de plonger plus profond ! 🌊

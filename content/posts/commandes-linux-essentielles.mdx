@@ -1,0 +1,306 @@
+---
+title: "Les commandes Linux essentielles pour débuter"
+description: "Maîtrise les 20 commandes Linux indispensables pour naviguer et gérer ton système comme un pro"
+date: "2025-02-01"
+category: "linux"
+tags: ["linux", "commandes", "débutant", "terminal"]
+author: "BiLearn"
+youtubeId: "dQw4w9WgXcQ"
+---
+
+## Introduction
+
+Si tu débutes sur Linux, le terminal peut sembler intimidant. Mais ne t'inquiète pas ! 
+En maîtrisant ces 20 commandes de base, tu seras capable de naviguer dans ton système 
+comme un véritable pro. 🐧
+
+## 📁 Navigation dans les dossiers
+
+### pwd - Où suis-je ?
+
+La commande `pwd` (Print Working Directory) affiche ton répertoire actuel :
+
+```bash
+pwd
+# Résultat : /home/utilisateur
+```
+
+### ls - Lister les fichiers
+
+Pour voir les fichiers et dossiers dans ton répertoire actuel :
+
+```bash
+# Liste simple
+ls
+
+# Liste détaillée avec permissions
+ls -l
+
+# Afficher les fichiers cachés
+ls -a
+
+# Combo puissant
+ls -lah
+```
+
+### cd - Se déplacer
+
+Change de répertoire avec `cd` :
+
+```bash
+# Aller dans un dossier
+cd Documents
+
+# Remonter d'un niveau
+cd ..
+
+# Retourner au home
+cd ~
+
+# Aller au répertoire précédent
+cd -
+```
+
+## 📝 Gestion des fichiers
+
+### touch - Créer un fichier
+
+```bash
+touch fichier.txt
+touch script.sh config.yaml
+```
+
+### mkdir - Créer un dossier
+
+```bash
+# Créer un dossier
+mkdir mon_projet
+
+# Créer plusieurs niveaux
+mkdir -p projet/src/components
+```
+
+### cp - Copier
+
+```bash
+# Copier un fichier
+cp source.txt destination.txt
+
+# Copier un dossier (récursif)
+cp -r dossier_source/ dossier_destination/
+```
+
+### mv - Déplacer ou renommer
+
+```bash
+# Renommer un fichier
+mv ancien_nom.txt nouveau_nom.txt
+
+# Déplacer un fichier
+mv fichier.txt ~/Documents/
+```
+
+### rm - Supprimer
+
+```bash
+# Supprimer un fichier
+rm fichier.txt
+
+# Supprimer un dossier et son contenu
+rm -rf dossier/
+
+# ⚠️ ATTENTION : rm -rf / supprime TOUT !
+```
+
+## 🔍 Lecture et recherche
+
+### cat - Afficher le contenu
+
+```bash
+# Afficher un fichier
+cat fichier.txt
+
+# Concaténer plusieurs fichiers
+cat fichier1.txt fichier2.txt > resultat.txt
+```
+
+### less - Lire page par page
+
+```bash
+less long_fichier.txt
+# Utilisez les flèches, Espace pour avancer, 'q' pour quitter
+```
+
+### grep - Rechercher du texte
+
+```bash
+# Chercher un mot dans un fichier
+grep "erreur" log.txt
+
+# Recherche récursive dans tous les fichiers
+grep -r "TODO" .
+
+# Ignorer la casse
+grep -i "error" log.txt
+```
+
+### find - Trouver des fichiers
+
+```bash
+# Trouver tous les fichiers .txt
+find . -name "*.txt"
+
+# Trouver les fichiers modifiés il y a moins de 7 jours
+find . -mtime -7
+
+# Trouver et supprimer
+find . -name "*.tmp" -delete
+```
+
+## 🔧 Commandes système
+
+### sudo - Exécuter en tant qu'admin
+
+```bash
+sudo apt update
+sudo systemctl restart nginx
+```
+
+### chmod - Changer les permissions
+
+```bash
+# Rendre un script exécutable
+chmod +x script.sh
+
+# Permissions en mode octal
+chmod 755 script.sh
+# 7=rwx, 5=r-x, 5=r-x
+```
+
+### ps - Voir les processus
+
+```bash
+# Voir tous les processus
+ps aux
+
+# Filtrer par nom
+ps aux | grep nginx
+```
+
+### top / htop - Monitorer le système
+
+```bash
+# Moniteur système basique
+top
+
+# Moniteur amélioré (si installé)
+htop
+```
+
+## 🌐 Réseau
+
+### ping - Tester la connexion
+
+```bash
+ping google.com
+ping -c 4 8.8.8.8  # Envoyer 4 paquets seulement
+```
+
+### wget / curl - Télécharger
+
+```bash
+# Télécharger un fichier
+wget https://exemple.com/fichier.zip
+
+# Voir le contenu d'une URL
+curl https://api.exemple.com/data
+```
+
+## 💡 Astuces de pro
+
+### L'auto-complétion
+
+Appuie sur **Tab** pour auto-compléter :
+- Noms de fichiers
+- Noms de commandes
+- Chemins de dossiers
+
+### L'historique des commandes
+
+```bash
+# Voir l'historique
+history
+
+# Rechercher dans l'historique (Ctrl+R)
+# Puis tape quelques lettres de la commande
+```
+
+### Les pipes |
+
+Combine plusieurs commandes :
+
+```bash
+# Compter les fichiers .txt
+ls | grep .txt | wc -l
+
+# Trouver les 10 plus gros fichiers
+du -ah | sort -rh | head -10
+```
+
+## 📚 Tableau récapitulatif
+
+| Commande | Usage | Exemple |
+|----------|-------|---------|
+| `pwd` | Afficher le chemin actuel | `pwd` |
+| `ls` | Lister les fichiers | `ls -lah` |
+| `cd` | Changer de dossier | `cd Documents` |
+| `touch` | Créer un fichier | `touch test.txt` |
+| `mkdir` | Créer un dossier | `mkdir projet` |
+| `cp` | Copier | `cp file.txt backup.txt` |
+| `mv` | Déplacer/Renommer | `mv old.txt new.txt` |
+| `rm` | Supprimer | `rm file.txt` |
+| `cat` | Afficher contenu | `cat config.txt` |
+| `grep` | Rechercher | `grep "error" log.txt` |
+| `chmod` | Changer permissions | `chmod +x script.sh` |
+| `sudo` | Exécuter en admin | `sudo apt update` |
+
+## ⚡ Exercice pratique
+
+Essaie de faire cet exercice pour t'entraîner :
+
+1. Crée un dossier `mon_projet`
+2. Entre dedans
+3. Crée 3 fichiers : `readme.txt`, `script.sh`, `data.json`
+4. Liste les fichiers
+5. Rends `script.sh` exécutable
+6. Renomme `readme.txt` en `README.md`
+7. Supprime `data.json`
+
+<details>
+<summary>Solution 👇</summary>
+
+```bash
+mkdir mon_projet
+cd mon_projet
+touch readme.txt script.sh data.json
+ls -l
+chmod +x script.sh
+mv readme.txt README.md
+rm data.json
+```
+</details>
+
+## 🎯 Prochaines étapes
+
+Maintenant que tu maîtrises les bases, tu peux :
+- Apprendre la [gestion des fichiers avancée](#)
+- Découvrir les [scripts Bash](#)
+- Explorer les [permissions et utilisateurs](#)
+
+## 💬 Besoin d'aide ?
+
+Rejoins notre [Discord](#) pour poser tes questions ou regarde la [playlist YouTube complète](#) !
+
+---
+
+**Pro tip** : Crée un fichier `aliases.sh` avec tes commandes favorites pour gagner du temps ! 🚀
