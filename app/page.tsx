@@ -1,6 +1,7 @@
 import Hero from '@/components/Hero';
 import Card from '@/components/Card';
 import Button from '@/components/Button';
+import SearchBar from '@/components/SearchBar';
 import { getAllPosts, getAllCategories } from '@/lib/posts';
 import { ArrowRight, BookOpen } from 'lucide-react';
 import Link from 'next/link';
@@ -13,6 +14,11 @@ export default function Home() {
   return (
     <>
       <Hero />
+
+      {/* Search Bar */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 mb-8 relative z-20">
+        <SearchBar posts={allPosts} />
+      </section>
 
       {/* Latest Posts Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">

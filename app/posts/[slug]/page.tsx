@@ -5,6 +5,12 @@ import { Calendar, Clock, Tag, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 import Button from '@/components/Button';
 import YouTubeEmbed from '@/components/YouTubeEmbed';
+import CodeBlock from '@/components/CodeBlock';
+import InfoBox from '@/components/InfoBox';
+import WarningBox from '@/components/WarningBox';
+import ArticleContent from '@/components/ArticleContent';
+import Quiz from '@/components/Quiz';
+import PracticalProjects from '@/components/PracticalProjects';
 import rehypeHighlight from 'rehype-highlight';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
@@ -13,6 +19,9 @@ import remarkGfm from 'remark-gfm';
 // Components available in MDX
 const components = {
   YouTubeEmbed,
+  InfoBox,
+  WarningBox,
+  pre: CodeBlock,
 };
 
 const options = {
@@ -60,7 +69,7 @@ export default function PostPage({ params }: { params: { slug: string } }) {
 
   return (
     <div className="min-h-screen pt-24 pb-20">
-      <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Back Button */}
         <Link href="/">
           <Button variant="ghost" icon={<ArrowLeft className="w-5 h-5" />} className="mb-8">
@@ -68,8 +77,8 @@ export default function PostPage({ params }: { params: { slug: string } }) {
           </Button>
         </Link>
 
-        {/* Header */}
-        <header className="mb-12">
+        {/* Article Header - centered, same max-width as content */}
+        <header className="mb-12 max-w-[1100px]">
           {/* Category Badge */}
           <div className="flex flex-wrap items-center gap-3 mb-6">
             <span className="inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold bg-light-primary/10 dark:bg-dark-primary/10 text-light-primary dark:text-dark-primary border border-light-primary/20 dark:border-dark-primary/20">
@@ -117,16 +126,20 @@ export default function PostPage({ params }: { params: { slug: string } }) {
 
         {/* YouTube Video if available */}
         {post.metadata.youtubeId && (
-          <YouTubeEmbed
-            videoId={post.metadata.youtubeId}
-            title={post.metadata.title}
-          />
+          <div className="mb-12">
+            <YouTubeEmbed
+              videoId={post.metadata.youtubeId}
+              title={post.metadata.title}
+            />
+          </div>
         )}
 
-        {/* Content */}
-        <div className="prose prose-lg max-w-none">
-          <MDXRemote source={post.content} components={components} options={options} />
-        </div>
+        {/* Two-column layout: TOC sidebar + Article content */}
+        <article>
+          <ArticleContent>
+            <MDXRemote source={post.content} components={components} options={options} />
+          </ArticleContent>
+        </article>
 
         {/* Share Section */}
         <div className="mt-16 pt-8 border-t border-light-border dark:border-dark-border">
@@ -134,7 +147,13 @@ export default function PostPage({ params }: { params: { slug: string } }) {
             Cet article t'a aidé ? Partage-le avec tes amis ! 🚀
           </p>
         </div>
-      </article>
+
+        {/* Quiz Section */}
+        <Quiz slug={params.slug} />
+
+        {/* Practical Projects Section */}
+        <PracticalProjects slug={params.slug} />
+      </div>
     </div>
   );
 }

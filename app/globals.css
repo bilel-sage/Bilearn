@@ -271,37 +271,67 @@ body {
   animation: pulse-ring 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
 }
 
-/* Code block copy button */
-.code-block-wrapper {
+/* Code block container with copy button */
+.code-block-container {
   position: relative;
 }
 
-.copy-button {
-  position: absolute;
-  top: 0.75rem;
-  right: 0.75rem;
-  padding: 0.5rem 1rem;
+.code-block-container pre {
+  padding-top: 2.5rem;
+}
+
+/* TOC sidebar scrollbar */
+.toc-scroll::-webkit-scrollbar {
+  width: 3px;
+}
+
+.toc-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.toc-scroll::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+
+.toc-scroll::-webkit-scrollbar-thumb:hover {
   background: var(--primary);
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 0.875rem;
-  font-weight: 500;
-  opacity: 0;
-  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
-.code-block-wrapper:hover .copy-button {
-  opacity: 1;
+/* Mobile TOC slide-in animation */
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
 }
 
-.copy-button:hover {
-  transform: scale(1.05);
+.animate-slide-in-right {
+  animation: slideInRight 0.25s ease-out;
 }
 
-.copy-button:active {
-  transform: scale(0.95);
+/* Callout boxes - prevent prose overrides on nested elements */
+.prose .info-callout p,
+.prose .warning-callout p {
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.prose .info-callout p:last-child,
+.prose .warning-callout p:last-child {
+  margin-bottom: 0;
+}
+
+.prose .info-callout a::after,
+.prose .warning-callout a::after {
+  display: none;
+}
+
+/* Smooth page transition for pagination */
+.prose > * {
+  transition: opacity 0.15s ease;
 }
 
 /* Selection */
