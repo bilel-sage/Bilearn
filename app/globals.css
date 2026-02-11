@@ -139,6 +139,14 @@ body {
   width: 100%;
 }
 
+/* Disable underline animation on heading links (rehype-autolink-headings) */
+.prose h1 a::after,
+.prose h2 a::after,
+.prose h3 a::after,
+.prose h4 a::after {
+  display: none;
+}
+
 .prose code {
   background: var(--surface);
   color: var(--primary);

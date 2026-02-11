@@ -1,0 +1,122 @@
+---
+title: "C'est quoi SSH ? Connexion sécurisée expliquée"
+description: "Apprends ce qu'est SSH, comment il fonctionne, et comment l'utiliser pour te connecter à un serveur distant de manière sécurisée."
+date: "2025-02-07"
+category: "glossaire"
+tags: ["ssh", "sécurité", "serveur", "glossaire"]
+author: "BiLearn"
+---
+
+## Introduction
+
+Si tu travailles avec des serveurs, tu as forcément entendu parler de **SSH**. C'est l'outil de base pour administrer un serveur distant en toute sécurité.
+
+## Définition simple
+
+**SSH** signifie **Secure Shell**. C'est un protocole réseau qui permet de se connecter à un ordinateur distant de manière **chiffrée et sécurisée**.
+
+> Imagine que tu veux envoyer un message secret à un ami. Au lieu de crier dans la rue (Telnet), tu utilises un tunnel privé où personne ne peut écouter. C'est ça, SSH.
+
+## Pourquoi SSH existe ?
+
+Avant SSH, on utilisait **Telnet** pour se connecter à distance. Le problème ? Tout passait en **clair** : mots de passe, commandes, données... N'importe qui sur le réseau pouvait tout lire.
+
+SSH résout ce problème en **chiffrant toute la communication**.
+
+## Comment ça fonctionne ?
+
+### 1. Authentification par mot de passe
+
+La méthode la plus simple (mais pas la plus sûre) :
+
+```bash
+# Se connecter à un serveur distant
+ssh utilisateur@adresse-du-serveur
+
+# Exemple concret
+ssh root@192.168.1.100
+```
+
+Tu tapes ton mot de passe et tu es connecté.
+
+### 2. Authentification par clé (recommandée)
+
+Plus sécurisée : tu crées une paire de clés (publique + privée) :
+
+```bash
+# Générer une paire de clés
+ssh-keygen -t ed25519 -C "ton-email@example.com"
+
+# Copier la clé publique sur le serveur
+ssh-copy-id utilisateur@adresse-du-serveur
+
+# Se connecter sans mot de passe
+ssh utilisateur@adresse-du-serveur
+```
+
+**Clé privée** = ta clé personnelle (ne jamais la partager)
+**Clé publique** = le cadenas que tu mets sur le serveur
+
+## Cas d'utilisation courants
+
+### Administrer un serveur
+
+```bash
+# Se connecter à un serveur web
+ssh admin@mon-serveur.com
+
+# Exécuter une commande à distance
+ssh admin@mon-serveur.com "df -h"
+```
+
+### Transférer des fichiers (SCP)
+
+```bash
+# Envoyer un fichier vers le serveur
+scp fichier.txt utilisateur@serveur:/chemin/destination/
+
+# Récupérer un fichier du serveur
+scp utilisateur@serveur:/chemin/fichier.txt ./local/
+```
+
+### Tunnel SSH (port forwarding)
+
+```bash
+# Accéder à un service distant via un tunnel local
+ssh -L 8080:localhost:3000 utilisateur@serveur
+```
+
+Tu peux ensuite accéder au port 3000 du serveur via `localhost:8080` sur ta machine.
+
+## Bonnes pratiques de sécurité
+
+- **Utiliser des clés SSH** au lieu des mots de passe
+- **Désactiver la connexion root** directe
+- **Changer le port par défaut** (22) pour un port personnalisé
+- **Utiliser fail2ban** pour bloquer les tentatives de brute-force
+- **Garder SSH à jour** pour éviter les vulnérabilités
+
+## Configuration SSH utile
+
+Tu peux simplifier tes connexions avec le fichier `~/.ssh/config` :
+
+```bash
+Host mon-serveur
+    HostName 192.168.1.100
+    User admin
+    Port 2222
+    IdentityFile ~/.ssh/ma-cle
+```
+
+Ensuite, tu te connectes simplement avec :
+
+```bash
+ssh mon-serveur
+```
+
+## À retenir
+
+- SSH permet de se connecter à un serveur distant de manière **chiffrée**
+- L'authentification par **clé** est plus sûre que par mot de passe
+- SSH sert aussi à **transférer des fichiers** (SCP) et créer des **tunnels**
+- Toujours suivre les **bonnes pratiques** de sécurité SSH

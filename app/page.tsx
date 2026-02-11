@@ -67,7 +67,7 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {['Linux', 'DevOps', 'Réseaux', 'Sécurité'].map((category, index) => {
+            {['Linux', 'DevOps', 'Réseaux', 'Glossaire'].map((category, index) => {
               const categorySlug = category.toLowerCase().replace('é', 'e');
               const postCount = allPosts.filter(
                 (post) => post.category.toLowerCase() === categorySlug
@@ -123,7 +123,7 @@ function getCategoryEmoji(category: string): string {
     Linux: '🐧',
     DevOps: '🚀',
     Réseaux: '🌐',
-    Sécurité: '🔒',
+    Glossaire: '📖',
   };
   return emojis[category] || '📚';
 }

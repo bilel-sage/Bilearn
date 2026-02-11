@@ -1,0 +1,111 @@
+---
+title: "C'est quoi un VPN ? Explication simple et complète"
+description: "Comprends ce qu'est un VPN, comment il fonctionne, et dans quels cas l'utiliser. Guide simple avec schémas et exemples concrets."
+date: "2025-02-06"
+category: "glossaire"
+tags: ["vpn", "sécurité", "réseau", "glossaire"]
+author: "BiLearn"
+---
+
+## Introduction
+
+Tu as sûrement déjà vu des pubs pour des VPN : "Protège ta vie privée !", "Navigue anonymement !"... Mais c'est quoi réellement un VPN, et comment ça fonctionne ?
+
+## Définition simple
+
+**VPN** signifie **Virtual Private Network** (Réseau Privé Virtuel).
+
+C'est un **tunnel chiffré** entre ton appareil et un serveur distant. Tout ton trafic Internet passe par ce tunnel, ce qui le rend invisible pour les autres.
+
+> Imagine une autoroute où tout le monde peut voir ta voiture et où tu vas. Un VPN, c'est comme un tunnel souterrain privé : personne ne voit ce que tu fais ni où tu vas.
+
+## Comment ça fonctionne ?
+
+Sans VPN :
+1. Ton ordinateur → Ton FAI (voit tout) → Site web (voit ton IP)
+
+Avec VPN :
+1. Ton ordinateur → **Tunnel chiffré** → Serveur VPN → Site web
+2. Le FAI voit que tu es connecté au VPN, mais pas ce que tu fais
+3. Le site web voit l'IP du serveur VPN, pas la tienne
+
+## Les protocoles VPN
+
+| Protocole | Vitesse | Sécurité | Usage |
+|-----------|---------|----------|-------|
+| **WireGuard** | Très rapide | Excellente | Recommandé (moderne) |
+| **OpenVPN** | Bonne | Excellente | Standard fiable |
+| **IKEv2/IPSec** | Rapide | Très bonne | Mobile (reconnexion rapide) |
+| **L2TP/IPSec** | Moyenne | Bonne | Compatible partout |
+| **PPTP** | Rapide | Faible | Obsolète (à éviter) |
+
+## Cas d'utilisation
+
+### Sécurité sur les WiFi publics
+Sur un WiFi public (café, aéroport), n'importe qui peut intercepter tes données. Le VPN chiffre tout.
+
+### Accès distant au réseau d'entreprise
+Les employés en télétravail utilisent un VPN pour accéder aux ressources internes de l'entreprise comme s'ils étaient au bureau.
+
+### Contourner les restrictions géographiques
+Certains contenus sont bloqués dans certains pays. Un VPN permet de se connecter via un serveur dans un autre pays.
+
+### Confidentialité
+Le VPN masque ton adresse IP réelle et empêche ton FAI de voir ton activité en détail.
+
+## Mettre en place un VPN avec WireGuard
+
+```bash
+# Installer WireGuard (Ubuntu/Debian)
+sudo apt update && sudo apt install wireguard
+
+# Générer les clés
+wg genkey | tee privatekey | wg pubkey > publickey
+
+# Voir les clés générées
+cat privatekey
+cat publickey
+```
+
+### Configuration serveur (`/etc/wireguard/wg0.conf`)
+
+```ini
+[Interface]
+PrivateKey = CLE_PRIVEE_SERVEUR
+Address = 10.0.0.1/24
+ListenPort = 51820
+
+[Peer]
+PublicKey = CLE_PUBLIQUE_CLIENT
+AllowedIPs = 10.0.0.2/32
+```
+
+```bash
+# Démarrer le VPN
+sudo wg-quick up wg0
+
+# Vérifier le statut
+sudo wg show
+```
+
+## VPN gratuit vs payant
+
+| Critère | Gratuit | Payant |
+|---------|---------|--------|
+| Vitesse | Limitée | Illimitée |
+| Données | Souvent plafonnées | Illimitées |
+| Confidentialité | Douteuse (revente de données ?) | Politique no-log |
+| Serveurs | Peu de choix | Des centaines |
+
+## Ce qu'un VPN ne fait PAS
+
+- **Ne rend pas anonyme à 100%** : les cookies, le fingerprinting et les comptes connectés te tracent quand même
+- **Ne protège pas des malwares** : un VPN ne remplace pas un antivirus
+- **Ne garantit pas la légalité** : utiliser un VPN pour des activités illégales reste illégal
+
+## À retenir
+
+- Un VPN crée un **tunnel chiffré** entre ton appareil et un serveur distant
+- Il protège ta **confidentialité** et sécurise les **connexions publiques**
+- **WireGuard** est le protocole moderne recommandé
+- Un VPN est un outil de **sécurité**, pas d'anonymat absolu

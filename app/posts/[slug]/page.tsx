@@ -9,8 +9,6 @@ import CodeBlock from '@/components/CodeBlock';
 import InfoBox from '@/components/InfoBox';
 import WarningBox from '@/components/WarningBox';
 import ArticleContent from '@/components/ArticleContent';
-import Quiz from '@/components/Quiz';
-import PracticalProjects from '@/components/PracticalProjects';
 import rehypeHighlight from 'rehype-highlight';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
@@ -124,19 +122,13 @@ export default function PostPage({ params }: { params: { slug: string } }) {
           </div>
         </header>
 
-        {/* YouTube Video if available */}
-        {post.metadata.youtubeId && (
-          <div className="mb-12">
-            <YouTubeEmbed
-              videoId={post.metadata.youtubeId}
-              title={post.metadata.title}
-            />
-          </div>
-        )}
-
         {/* Two-column layout: TOC sidebar + Article content */}
         <article>
-          <ArticleContent>
+          <ArticleContent
+            slug={params.slug}
+            youtubeId={post.metadata.youtubeId}
+            articleTitle={post.metadata.title}
+          >
             <MDXRemote source={post.content} components={components} options={options} />
           </ArticleContent>
         </article>
@@ -147,12 +139,6 @@ export default function PostPage({ params }: { params: { slug: string } }) {
             Cet article t'a aidé ? Partage-le avec tes amis ! 🚀
           </p>
         </div>
-
-        {/* Quiz Section */}
-        <Quiz slug={params.slug} />
-
-        {/* Practical Projects Section */}
-        <PracticalProjects slug={params.slug} />
       </div>
     </div>
   );

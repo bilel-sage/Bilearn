@@ -3,14 +3,20 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import TableOfContents from './TableOfContents';
+import YouTubeEmbed from './YouTubeEmbed';
+import Quiz from './Quiz';
+import PracticalProjects from './PracticalProjects';
 
 const SECTIONS_PER_PAGE = 5;
 
 interface ArticleContentProps {
   children: React.ReactNode;
+  slug?: string;
+  youtubeId?: string;
+  articleTitle?: string;
 }
 
-export default function ArticleContent({ children }: ArticleContentProps) {
+export default function ArticleContent({ children, slug, youtubeId, articleTitle }: ArticleContentProps) {
   const contentRef = useRef<HTMLDivElement>(null);
   const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState(1);
@@ -102,6 +108,13 @@ export default function ArticleContent({ children }: ArticleContentProps) {
 
       {/* Article body */}
       <div className="flex-1 min-w-0">
+        {/* YouTube Video at the top of article content */}
+        {youtubeId && (
+          <div className="mb-8">
+            <YouTubeEmbed videoId={youtubeId} title={articleTitle} />
+          </div>
+        )}
+
         <div className="prose prose-lg max-w-none" ref={contentRef}>
           {children}
         </div>
@@ -144,6 +157,10 @@ export default function ArticleContent({ children }: ArticleContentProps) {
             </button>
           </div>
         )}
+
+        {/* Quiz and Projects after article content */}
+        {slug && <Quiz slug={slug} />}
+        {slug && <PracticalProjects slug={slug} />}
 
         {/* Mobile TOC (floating button + drawer) */}
         <div className="lg:hidden">

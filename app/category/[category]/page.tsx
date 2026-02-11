@@ -1,9 +1,9 @@
 import { notFound } from 'next/navigation';
 import { getPostsByCategory, getAllCategories } from '@/lib/posts';
-import Card from '@/components/Card';
 import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 import Button from '@/components/Button';
+import CategoryContent from '@/components/CategoryContent';
 
 export async function generateStaticParams() {
   const categories = getAllCategories();
@@ -18,6 +18,17 @@ export async function generateMetadata({ params }: { params: { category: string 
     title: `${categoryName} | BiLearn`,
     description: `Tous les articles et tutoriels sur ${categoryName}`,
   };
+}
+
+function getCategoryEmoji(category: string): string {
+  const emojis: { [key: string]: string } = {
+    Linux: '🐧',
+    Devops: '🚀',
+    Réseaux: '🌐',
+    Reseaux: '🌐',
+    Glossaire: '📖',
+  };
+  return emojis[category] || '📚';
 }
 
 export default function CategoryPage({ params }: { params: { category: string } }) {
@@ -50,25 +61,9 @@ export default function CategoryPage({ params }: { params: { category: string } 
           </p>
         </div>
 
-        {/* Posts Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {posts.map((post, index) => (
-            <Card key={post.slug} post={post} index={index} />
-          ))}
-        </div>
+        {/* Search + Posts Grid */}
+        <CategoryContent posts={posts} />
       </div>
     </div>
   );
-}
-
-function getCategoryEmoji(category: string): string {
-  const emojis: { [key: string]: string } = {
-    Linux: '🐧',
-    Devops: '🚀',
-    Réseaux: '🌐',
-    Reseaux: '🌐',
-    Sécurité: '🔒',
-    Securite: '🔒',
-  };
-  return emojis[category] || '📚';
 }

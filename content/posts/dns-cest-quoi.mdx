@@ -1,0 +1,79 @@
+---
+title: "C'est quoi le DNS ? L'annuaire d'Internet"
+description: "Découvre comment fonctionne le DNS, le système qui traduit les noms de domaine en adresses IP. Expliqué simplement avec des schémas."
+date: "2025-02-08"
+category: "glossaire"
+tags: ["dns", "réseau", "internet", "glossaire"]
+author: "BiLearn"
+---
+
+## Introduction
+
+Chaque fois que tu tapes **google.com** dans ton navigateur, un système invisible fait tout le travail pour trouver le bon serveur. Ce système, c'est le **DNS**.
+
+## Définition simple
+
+**DNS** signifie **Domain Name System** (Système de Noms de Domaine).
+
+C'est comme un **annuaire téléphonique** d'Internet : il traduit les noms de domaine lisibles par les humains (comme `google.com`) en adresses IP compréhensibles par les machines (comme `142.250.74.238`).
+
+> Sans le DNS, tu devrais taper `142.250.74.238` au lieu de `google.com` pour visiter un site. Pas très pratique !
+
+## Comment ça fonctionne ?
+
+Quand tu tapes `bilearn.fr` dans ton navigateur :
+
+1. **Cache local** : Ton ordinateur vérifie s'il connaît déjà l'adresse IP
+2. **Serveur DNS récursif** : Sinon, il demande à ton fournisseur d'accès (FAI)
+3. **Serveur racine** : Le FAI interroge un serveur racine qui dit "demande au serveur .fr"
+4. **Serveur TLD** : Le serveur `.fr` dit "demande au serveur de bilearn.fr"
+5. **Serveur autoritaire** : Ce serveur connaît l'IP exacte et la renvoie
+6. **Réponse** : Ton navigateur reçoit l'IP et se connecte au site
+
+Tout ça se passe en quelques **millisecondes**.
+
+## Les types d'enregistrements DNS
+
+| Type | Rôle | Exemple |
+|------|------|---------|
+| `A` | Associe un domaine à une IPv4 | `bilearn.fr → 93.184.216.34` |
+| `AAAA` | Associe un domaine à une IPv6 | `bilearn.fr → 2606:2800:...` |
+| `CNAME` | Alias vers un autre domaine | `www.bilearn.fr → bilearn.fr` |
+| `MX` | Serveur de messagerie | `bilearn.fr → mail.bilearn.fr` |
+| `TXT` | Texte libre (vérification, SPF) | Vérification de propriété |
+| `NS` | Serveur de noms autoritaire | `bilearn.fr → ns1.example.com` |
+
+## Vérifier un DNS toi-même
+
+Tu peux utiliser la commande `nslookup` ou `dig` pour interroger le DNS :
+
+```bash
+# Trouver l'adresse IP d'un domaine
+nslookup google.com
+
+# Avec dig (plus détaillé)
+dig google.com
+
+# Voir un enregistrement spécifique
+dig google.com MX
+```
+
+## Serveurs DNS populaires
+
+- **8.8.8.8** / **8.8.4.4** : Google DNS (rapide et fiable)
+- **1.1.1.1** / **1.0.0.1** : Cloudflare DNS (rapide et respectueux de la vie privée)
+- **9.9.9.9** : Quad9 (avec filtrage de sécurité)
+
+## Problèmes courants liés au DNS
+
+- **Propagation DNS** : Quand tu changes de serveur, la mise à jour peut prendre jusqu'à 48h
+- **Cache DNS** : Ton ordinateur peut garder une ancienne adresse IP en cache
+- **DNS Spoofing** : Une attaque qui redirige vers un faux site
+- **DNS sur HTTPS (DoH)** : Chiffre les requêtes DNS pour plus de confidentialité
+
+## À retenir
+
+- Le DNS traduit les **noms de domaine** en **adresses IP**
+- La résolution passe par plusieurs serveurs : récursif → racine → TLD → autoritaire
+- Les enregistrements `A`, `CNAME`, et `MX` sont les plus courants
+- Utiliser un DNS rapide (1.1.1.1 ou 8.8.8.8) peut accélérer ta navigation

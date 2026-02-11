@@ -1,0 +1,81 @@
+---
+title: "C'est quoi une API ? Explication simple avec exemples"
+description: "Découvre ce qu'est une API, comment elle fonctionne, et pourquoi elle est essentielle dans le développement moderne. Expliqué simplement avec des analogies."
+date: "2025-02-10"
+category: "glossaire"
+tags: ["api", "web", "développement", "glossaire"]
+author: "BiLearn"
+---
+
+## Introduction
+
+Tu entends parler d'**API** partout : dans les offres d'emploi, les tutoriels, les docs techniques... Mais c'est quoi exactement ?
+
+Dans cet article, on va démystifier le concept d'API avec des analogies simples et des exemples concrets.
+
+## Définition simple
+
+**API** signifie **Application Programming Interface** (Interface de Programmation d'Applications).
+
+C'est un **intermédiaire** qui permet à deux logiciels de communiquer entre eux, sans avoir besoin de connaître les détails internes de l'autre.
+
+> Pense à un serveur dans un restaurant : tu donnes ta commande au serveur (la requête), il va en cuisine (le système), et il te ramène ton plat (la réponse). Le serveur, c'est l'API.
+
+## Comment ça fonctionne ?
+
+Une API fonctionne avec un système de **requêtes** et de **réponses** :
+
+1. **Le client** envoie une requête (ex: "donne-moi la météo de Paris")
+2. **L'API** reçoit la requête et la transmet au serveur
+3. **Le serveur** traite la demande et renvoie les données
+4. **L'API** retourne la réponse au client
+
+### Les méthodes HTTP les plus courantes
+
+| Méthode | Action | Exemple |
+|---------|--------|---------|
+| `GET` | Lire des données | Récupérer une liste d'utilisateurs |
+| `POST` | Créer des données | Ajouter un nouvel utilisateur |
+| `PUT` | Modifier des données | Mettre à jour un profil |
+| `DELETE` | Supprimer des données | Supprimer un compte |
+
+## Exemple concret
+
+Quand tu ouvres une app météo sur ton téléphone :
+
+1. L'app envoie une requête `GET` à l'API météo avec ta localisation
+2. L'API interroge la base de données météo
+3. Elle renvoie les données (température, humidité, etc.) en format **JSON**
+4. L'app affiche les infos joliment sur ton écran
+
+```json
+{
+  "ville": "Paris",
+  "temperature": 18,
+  "conditions": "ensoleillé"
+}
+```
+
+## Types d'API courants
+
+- **API REST** : La plus répandue, utilise HTTP. Simple et standardisée.
+- **API GraphQL** : Permet de demander exactement les données dont tu as besoin.
+- **API WebSocket** : Pour la communication en temps réel (chat, jeux).
+- **API SOAP** : Plus ancienne, utilise XML. Encore utilisée en entreprise.
+
+## Pourquoi c'est important ?
+
+Les API sont partout :
+- **Se connecter avec Google/GitHub** sur un site → API OAuth
+- **Paiement en ligne** → API Stripe/PayPal
+- **Afficher une carte** → API Google Maps
+- **Envoyer des notifications** → API Firebase
+
+Sans les API, chaque application devrait tout construire de zéro.
+
+## À retenir
+
+- Une API est un **contrat** entre deux logiciels pour communiquer
+- Elle utilise des **requêtes** (demandes) et des **réponses** (données)
+- **REST** est le type d'API le plus courant aujourd'hui
+- Les API permettent de **réutiliser** des services existants au lieu de tout recoder

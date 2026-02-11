@@ -214,4 +214,212 @@ export const quizzes: QuizData = {
       explanation: '"terraform apply" exécute les changements nécessaires pour atteindre l\'état souhaité défini dans les fichiers de configuration.',
     },
   ],
+
+  'api-cest-quoi': [
+    {
+      question: 'Que signifie API ?',
+      options: ['Application Programming Interface', 'Advanced Protocol Integration', 'Automated Process Interface', 'Application Process Integration'],
+      correctAnswer: 0,
+      explanation: 'API signifie Application Programming Interface (Interface de Programmation d\'Applications). C\'est un intermédiaire qui permet à deux logiciels de communiquer.',
+    },
+    {
+      question: 'Quelle méthode HTTP est utilisée pour récupérer des données ?',
+      options: ['POST', 'PUT', 'GET', 'DELETE'],
+      correctAnswer: 2,
+      explanation: 'La méthode GET est utilisée pour lire/récupérer des données depuis un serveur sans les modifier.',
+    },
+    {
+      question: 'Quel format de données est le plus couramment utilisé par les API REST ?',
+      options: ['XML', 'CSV', 'JSON', 'YAML'],
+      correctAnswer: 2,
+      explanation: 'JSON (JavaScript Object Notation) est le format standard des API REST modernes car il est léger et facile à lire.',
+    },
+    {
+      question: 'Quelle méthode HTTP est utilisée pour créer une nouvelle ressource ?',
+      options: ['GET', 'POST', 'PATCH', 'OPTIONS'],
+      correctAnswer: 1,
+      explanation: 'La méthode POST est utilisée pour envoyer des données au serveur et créer une nouvelle ressource.',
+    },
+    {
+      question: 'Quel type d\'API permet la communication en temps réel ?',
+      options: ['REST', 'SOAP', 'WebSocket', 'GraphQL'],
+      correctAnswer: 2,
+      explanation: 'Les API WebSocket permettent une communication bidirectionnelle en temps réel, idéale pour les chats et les jeux en ligne.',
+    },
+  ],
+
+  'firewall-cest-quoi': [
+    {
+      question: 'Quel est le rôle principal d\'un firewall ?',
+      options: ['Accélérer le réseau', 'Filtrer le trafic réseau', 'Compresser les données', 'Stocker les fichiers'],
+      correctAnswer: 1,
+      explanation: 'Un firewall filtre le trafic réseau entrant et sortant selon des règles définies pour protéger le réseau.',
+    },
+    {
+      question: 'Sur quels critères un firewall filtre-t-il le trafic ? ',
+      options: ['Uniquement l\'adresse IP', 'Uniquement le port', 'IP, port, protocole', 'Uniquement le contenu'],
+      correctAnswer: 2,
+      explanation: 'Un firewall examine l\'adresse IP source/destination, le port et le protocole pour décider de laisser passer ou bloquer un paquet.',
+    },
+    {
+      question: 'Quel outil simplifie la gestion du firewall iptables sur Ubuntu ?',
+      options: ['firewalld', 'UFW', 'nftables', 'pfSense'],
+      correctAnswer: 1,
+      explanation: 'UFW (Uncomplicated Firewall) est une interface simplifiée pour iptables, très populaire sur Ubuntu.',
+    },
+    {
+      question: 'Quelle est la bonne politique par défaut pour un firewall ?',
+      options: ['Tout autoriser', 'Tout bloquer puis autoriser le nécessaire', 'Autoriser le trafic entrant uniquement', 'Désactiver le firewall'],
+      correctAnswer: 1,
+      explanation: 'La règle d\'or est de tout bloquer par défaut (deny all) puis d\'autoriser uniquement le trafic nécessaire.',
+    },
+    {
+      question: 'Qu\'est-ce qu\'un WAF ?',
+      options: ['Un firewall sans fil', 'Un firewall applicatif web', 'Un protocole réseau', 'Un outil de monitoring'],
+      correctAnswer: 1,
+      explanation: 'WAF signifie Web Application Firewall. Il analyse le trafic au niveau applicatif pour détecter des attaques comme les injections SQL.',
+    },
+  ],
+
+  'dns-cest-quoi': [
+    {
+      question: 'Que signifie DNS ?',
+      options: ['Dynamic Network Service', 'Domain Name System', 'Data Network Security', 'Digital Name Server'],
+      correctAnswer: 1,
+      explanation: 'DNS signifie Domain Name System (Système de Noms de Domaine). Il traduit les noms de domaine en adresses IP.',
+    },
+    {
+      question: 'Quel type d\'enregistrement DNS associe un domaine à une adresse IPv4 ?',
+      options: ['CNAME', 'MX', 'A', 'TXT'],
+      correctAnswer: 2,
+      explanation: 'L\'enregistrement de type A (Address) associe un nom de domaine à une adresse IPv4.',
+    },
+    {
+      question: 'Quel serveur DNS est fourni par Cloudflare ?',
+      options: ['8.8.8.8', '9.9.9.9', '1.1.1.1', '208.67.222.222'],
+      correctAnswer: 2,
+      explanation: '1.1.1.1 est le serveur DNS de Cloudflare, connu pour sa rapidité et le respect de la vie privée.',
+    },
+    {
+      question: 'Combien de temps peut prendre la propagation DNS après un changement ?',
+      options: ['Instantanée', 'Jusqu\'à 1 heure', 'Jusqu\'à 48 heures', 'Jusqu\'à 1 semaine'],
+      correctAnswer: 2,
+      explanation: 'La propagation DNS peut prendre jusqu\'à 48 heures car les caches DNS à travers le monde doivent se mettre à jour.',
+    },
+    {
+      question: 'Quel enregistrement DNS est utilisé pour les serveurs de messagerie ?',
+      options: ['A', 'CNAME', 'MX', 'NS'],
+      correctAnswer: 2,
+      explanation: 'L\'enregistrement MX (Mail eXchange) indique quel serveur gère les emails pour un domaine donné.',
+    },
+  ],
+
+  'ssh-cest-quoi': [
+    {
+      question: 'Que signifie SSH ?',
+      options: ['Secure Socket Host', 'Secure Shell', 'System Shell Handler', 'Safe Server Host'],
+      correctAnswer: 1,
+      explanation: 'SSH signifie Secure Shell. C\'est un protocole de connexion distante chiffrée.',
+    },
+    {
+      question: 'Quel protocole SSH a-t-il remplacé ?',
+      options: ['FTP', 'HTTP', 'Telnet', 'SMTP'],
+      correctAnswer: 2,
+      explanation: 'SSH a remplacé Telnet car celui-ci transmettait tout en clair (mots de passe inclus), ce qui était un risque de sécurité majeur.',
+    },
+    {
+      question: 'Quel est le port par défaut de SSH ?',
+      options: ['21', '22', '80', '443'],
+      correctAnswer: 1,
+      explanation: 'Le port par défaut de SSH est le port 22. Il est recommandé de le changer pour un port personnalisé en production.',
+    },
+    {
+      question: 'Quelle méthode d\'authentification SSH est la plus sécurisée ?',
+      options: ['Mot de passe', 'Clé publique/privée', 'Telnet', 'Connexion anonyme'],
+      correctAnswer: 1,
+      explanation: 'L\'authentification par clé publique/privée est plus sécurisée car elle ne transmet pas de mot de passe et résiste au brute-force.',
+    },
+    {
+      question: 'Quelle commande permet de copier un fichier via SSH ?',
+      options: ['ssh-copy', 'scp', 'sftp-send', 'ssh-transfer'],
+      correctAnswer: 1,
+      explanation: 'SCP (Secure Copy Protocol) permet de transférer des fichiers de manière sécurisée entre deux machines via SSH.',
+    },
+  ],
+
+  'vpn-cest-quoi': [
+    {
+      question: 'Que signifie VPN ?',
+      options: ['Virtual Private Network', 'Verified Protected Network', 'Virtual Protocol Node', 'Visual Private Node'],
+      correctAnswer: 0,
+      explanation: 'VPN signifie Virtual Private Network (Réseau Privé Virtuel). Il crée un tunnel chiffré pour ton trafic Internet.',
+    },
+    {
+      question: 'Quel protocole VPN moderne est recommandé pour ses performances ?',
+      options: ['PPTP', 'L2TP', 'WireGuard', 'SSTP'],
+      correctAnswer: 2,
+      explanation: 'WireGuard est le protocole VPN le plus moderne, offrant d\'excellentes performances et une sécurité de pointe avec un code minimal.',
+    },
+    {
+      question: 'Que peut voir ton FAI quand tu utilises un VPN ?',
+      options: ['Tout ton trafic', 'Uniquement que tu es connecté à un VPN', 'Rien du tout', 'Tes mots de passe'],
+      correctAnswer: 1,
+      explanation: 'Avec un VPN, ton FAI peut voir que tu es connecté à un serveur VPN, mais pas le contenu de ton trafic ni les sites que tu visites.',
+    },
+    {
+      question: 'Dans quel cas un VPN est-il particulièrement recommandé ?',
+      options: ['Sur ton réseau domestique', 'Sur un WiFi public', 'En mode avion', 'Sur un réseau Ethernet'],
+      correctAnswer: 1,
+      explanation: 'Sur un WiFi public (café, aéroport), les données peuvent être interceptées. Le VPN chiffre tout le trafic pour te protéger.',
+    },
+    {
+      question: 'Qu\'est-ce qu\'un VPN NE fait PAS ?',
+      options: ['Chiffrer le trafic', 'Masquer ton IP', 'Protéger contre les malwares', 'Contourner les restrictions géo'],
+      correctAnswer: 2,
+      explanation: 'Un VPN ne protège pas contre les malwares ou les virus. Il chiffre le trafic et masque l\'IP, mais ne remplace pas un antivirus.',
+    },
+  ],
+
+  'New': [
+    {
+      question: 'Combien de couches comporte le modèle TCP/IP ?',
+      options: ['3 couches', '4 couches', '5 couches', '7 couches'],
+      correctAnswer: 1,
+      explanation: 'Le modèle TCP/IP comporte 4 couches : Application, Transport, Internet et Accès réseau. Le modèle OSI, lui, en comporte 7.',
+    },
+    {
+      question: 'Quel protocole de la couche Transport garantit la livraison fiable des données ?',
+      options: ['UDP', 'TCP', 'IP', 'ICMP'],
+      correctAnswer: 1,
+      explanation: 'TCP (Transmission Control Protocol) assure une livraison fiable grâce à l\'établissement de connexion (handshake), l\'acquittement et la retransmission.',
+    },
+    {
+      question: 'Quelle est la fonction principale du protocole IP ?',
+      options: [
+        'Chiffrer les données',
+        'Acheminer les paquets vers leur destination',
+        'Compresser les fichiers',
+        'Gérer les noms de domaine',
+      ],
+      correctAnswer: 1,
+      explanation: 'Le protocole IP (Internet Protocol) est responsable de l\'adressage et du routage des paquets à travers le réseau, de la source à la destination.',
+    },
+    {
+      question: 'Qu\'est-ce que le "three-way handshake" en TCP ?',
+      options: [
+        'Un mécanisme de chiffrement',
+        'Le processus d\'établissement de connexion en 3 étapes (SYN, SYN-ACK, ACK)',
+        'Une méthode de compression',
+        'Un protocole de routage',
+      ],
+      correctAnswer: 1,
+      explanation: 'Le three-way handshake est le processus en 3 étapes (SYN → SYN-ACK → ACK) qui permet d\'établir une connexion TCP fiable entre deux hôtes.',
+    },
+    {
+      question: 'Quel protocole est utilisé pour résoudre les noms de domaine en adresses IP ?',
+      options: ['HTTP', 'FTP', 'DNS', 'SMTP'],
+      correctAnswer: 2,
+      explanation: 'Le DNS (Domain Name System) traduit les noms de domaine lisibles (ex: google.com) en adresses IP numériques utilisées par les machines.',
+    },
+  ],
 };

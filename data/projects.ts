@@ -94,6 +94,111 @@ export const projects: ProjectsData = {
     },
   ],
 
+  'api-cest-quoi': [
+    {
+      title: 'Consommer une API publique',
+      description: 'Utilise fetch ou axios pour récupérer des données depuis une API publique (comme OpenWeatherMap) et les afficher dans une page web.',
+      difficulty: 'debutant',
+      link: '#',
+    },
+    {
+      title: 'Créer ta propre API REST',
+      description: 'Construis une API REST simple avec Node.js et Express qui gère un CRUD (Create, Read, Update, Delete) sur une collection de données.',
+      difficulty: 'intermediaire',
+      link: '#',
+    },
+    {
+      title: 'API avec authentification JWT',
+      description: 'Développe une API sécurisée avec authentification JWT, middleware de validation, et documentation Swagger automatique.',
+      difficulty: 'difficile',
+      link: '#',
+    },
+  ],
+
+  'firewall-cest-quoi': [
+    {
+      title: 'Configurer UFW sur un serveur',
+      description: 'Installe et configure UFW sur une machine Linux. Autorise uniquement SSH, HTTP et HTTPS, et bloque tout le reste.',
+      difficulty: 'debutant',
+      link: '#',
+    },
+    {
+      title: 'Script de règles iptables',
+      description: 'Écris un script Bash qui configure des règles iptables complètes : filtrage par IP, limitation de débit, et logging des tentatives bloquées.',
+      difficulty: 'intermediaire',
+      link: '#',
+    },
+    {
+      title: 'Déployer pfSense en VM',
+      description: 'Installe pfSense dans une machine virtuelle et configure un firewall complet avec NAT, VPN, et détection d\'intrusions (Snort/Suricata).',
+      difficulty: 'difficile',
+      link: '#',
+    },
+  ],
+
+  'dns-cest-quoi': [
+    {
+      title: 'Interroger le DNS avec dig',
+      description: 'Utilise les commandes nslookup et dig pour explorer les enregistrements DNS de différents sites web. Documente tes découvertes.',
+      difficulty: 'debutant',
+      link: '#',
+    },
+    {
+      title: 'Configurer un domaine complet',
+      description: 'Achète un nom de domaine et configure tous les enregistrements DNS (A, CNAME, MX, TXT) pour pointer vers ton serveur et activer les emails.',
+      difficulty: 'intermediaire',
+      link: '#',
+    },
+    {
+      title: 'Monter ton propre serveur DNS',
+      description: 'Installe et configure BIND9 ou Pi-hole comme serveur DNS local avec filtrage de publicités et résolution personnalisée.',
+      difficulty: 'difficile',
+      link: '#',
+    },
+  ],
+
+  'ssh-cest-quoi': [
+    {
+      title: 'Première connexion SSH',
+      description: 'Génère une paire de clés SSH, copie la clé publique sur un serveur distant, et connecte-toi sans mot de passe.',
+      difficulty: 'debutant',
+      link: '#',
+    },
+    {
+      title: 'Fichier config SSH avancé',
+      description: 'Configure ~/.ssh/config pour gérer plusieurs serveurs avec des alias, ports personnalisés et clés spécifiques par hôte.',
+      difficulty: 'intermediaire',
+      link: '#',
+    },
+    {
+      title: 'Bastion SSH et tunnel sécurisé',
+      description: 'Mets en place un serveur bastion SSH avec ProxyJump, port forwarding, et fail2ban pour sécuriser l\'accès à une infrastructure.',
+      difficulty: 'difficile',
+      link: '#',
+    },
+  ],
+
+  'vpn-cest-quoi': [
+    {
+      title: 'Installer WireGuard sur Linux',
+      description: 'Installe WireGuard sur une machine Linux, génère les clés, et configure un tunnel VPN basique entre deux machines.',
+      difficulty: 'debutant',
+      link: '#',
+    },
+    {
+      title: 'VPN site-to-site avec WireGuard',
+      description: 'Configure un VPN WireGuard reliant deux réseaux distants avec routage automatique et persistance de connexion.',
+      difficulty: 'intermediaire',
+      link: '#',
+    },
+    {
+      title: 'Serveur VPN complet avec gestion des clients',
+      description: 'Déploie un serveur OpenVPN ou WireGuard avec interface web de gestion, certificats par client, et monitoring du trafic.',
+      difficulty: 'difficile',
+      link: '#',
+    },
+  ],
+
   'terraform-guide': [
     {
       title: 'Déployer une VM dans le cloud',

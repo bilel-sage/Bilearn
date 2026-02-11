@@ -1,0 +1,87 @@
+---
+title: "C'est quoi un Firewall ? Le gardien de ton réseau"
+description: "Comprends ce qu'est un firewall, comment il protège ton réseau, et les différents types qui existent. Expliqué simplement."
+date: "2025-02-09"
+category: "glossaire"
+tags: ["firewall", "sécurité", "réseau", "glossaire"]
+author: "BiLearn"
+---
+
+## Introduction
+
+Un **firewall** (pare-feu en français) est l'un des premiers outils de sécurité informatique. Mais comment ça fonctionne exactement ?
+
+Dans cet article, on va voir ce qu'est un firewall, pourquoi il est essentiel, et comment il protège ton réseau.
+
+## Définition simple
+
+Un **firewall** est un système de sécurité qui **filtre le trafic réseau** entrant et sortant selon des règles définies.
+
+> Imagine un videur devant une boîte de nuit : il vérifie chaque personne qui veut entrer. Si tu es sur la liste, tu passes. Sinon, tu restes dehors. Le firewall fait pareil avec les paquets réseau.
+
+## Comment ça fonctionne ?
+
+Le firewall examine chaque **paquet de données** qui traverse le réseau et décide de le **laisser passer** ou de le **bloquer** selon des règles :
+
+1. **Adresse IP source** : D'où vient le paquet ?
+2. **Adresse IP destination** : Où va-t-il ?
+3. **Port** : Quel service est visé ? (80 = HTTP, 443 = HTTPS, 22 = SSH)
+4. **Protocole** : TCP, UDP, ICMP ?
+
+### Exemple de règles simples
+
+| Règle | Action | Description |
+|-------|--------|-------------|
+| Port 443 entrant | Autoriser | Permettre le trafic HTTPS |
+| Port 22 entrant | Autoriser (IP spécifique) | SSH uniquement depuis le bureau |
+| Port 23 entrant | Bloquer | Telnet interdit (non sécurisé) |
+| Tout le reste | Bloquer | Politique par défaut |
+
+## Types de firewall
+
+### Firewall à filtrage de paquets
+Le plus basique. Il examine chaque paquet individuellement selon les règles IP/port. Rapide mais limité.
+
+### Firewall à état (Stateful)
+Plus intelligent : il suit l'état des connexions. Il sait qu'une réponse à une requête sortante est légitime.
+
+### Firewall applicatif (WAF)
+Analyse le contenu des paquets au niveau application. Il peut détecter des attaques comme les injections SQL ou le XSS.
+
+### Firewall nouvelle génération (NGFW)
+Combine tout : filtrage, inspection profonde, détection d'intrusions, et analyse des applications.
+
+## Firewalls courants
+
+- **iptables / nftables** : Firewall intégré à Linux
+- **UFW** : Interface simplifiée pour iptables (Ubuntu)
+- **Windows Defender Firewall** : Intégré à Windows
+- **pfSense** : Firewall open-source très complet
+- **Cloudflare WAF** : Firewall applicatif cloud
+
+## Exemple pratique avec UFW (Linux)
+
+```bash
+# Activer le firewall
+sudo ufw enable
+
+# Autoriser SSH
+sudo ufw allow 22/tcp
+
+# Autoriser HTTP et HTTPS
+sudo ufw allow 80/tcp
+sudo ufw allow 443/tcp
+
+# Bloquer tout le reste (par défaut)
+sudo ufw default deny incoming
+
+# Voir les règles actives
+sudo ufw status verbose
+```
+
+## À retenir
+
+- Un firewall **filtre le trafic réseau** selon des règles définies
+- Il fonctionne sur les **adresses IP**, les **ports** et les **protocoles**
+- La règle d'or : **tout bloquer par défaut**, puis autoriser uniquement ce qui est nécessaire
+- Il existe des firewalls réseau, applicatifs, et cloud
