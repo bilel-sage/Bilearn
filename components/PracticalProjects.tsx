@@ -1,8 +1,9 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Rocket, Star, Flame, ExternalLink, FolderOpen } from 'lucide-react';
+import { Rocket, Star, Flame, ArrowRight, FolderOpen } from 'lucide-react';
 import { projects } from '@/data/projects';
+import Link from 'next/link';
 
 interface PracticalProjectsProps {
   slug: string;
@@ -57,44 +58,38 @@ export default function PracticalProjects({ slug }: PracticalProjectsProps) {
           const Icon = config.icon;
 
           return (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 * index }}
-              className="group relative p-6 rounded-xl border border-light-border dark:border-dark-border bg-light-surface dark:bg-dark-surface transition-all duration-300 card-hover"
-            >
-              {/* Difficulty Badge */}
-              <div className="flex items-center justify-between mb-4">
-                <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold border ${config.badgeClass}`}>
-                  <Icon className="w-3.5 h-3.5" />
-                  {config.label}
+            <Link key={index} href={`/projects/${slug}/${index}`}>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 * index }}
+                className="group relative p-6 rounded-xl border border-light-border dark:border-dark-border bg-light-surface dark:bg-dark-surface transition-all duration-300 card-hover h-full cursor-pointer"
+              >
+                {/* Difficulty Badge */}
+                <div className="flex items-center justify-between mb-4">
+                  <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold border ${config.badgeClass}`}>
+                    <Icon className="w-3.5 h-3.5" />
+                    {config.label}
+                  </span>
+                </div>
+
+                {/* Title */}
+                <h3 className="text-lg font-bold mb-3 group-hover:text-light-primary dark:group-hover:text-dark-primary transition-colors">
+                  {project.title}
+                </h3>
+
+                {/* Description */}
+                <p className="text-sm text-light-text-secondary dark:text-dark-text-secondary leading-relaxed mb-4">
+                  {project.description}
+                </p>
+
+                {/* CTA */}
+                <span className="inline-flex items-center gap-1.5 text-sm font-medium text-light-primary dark:text-dark-primary">
+                  Voir les étapes
+                  <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
                 </span>
-              </div>
-
-              {/* Title */}
-              <h3 className="text-lg font-bold mb-3 group-hover:text-light-primary dark:group-hover:text-dark-primary transition-colors">
-                {project.title}
-              </h3>
-
-              {/* Description */}
-              <p className="text-sm text-light-text-secondary dark:text-dark-text-secondary leading-relaxed mb-4">
-                {project.description}
-              </p>
-
-              {/* Link */}
-              {project.link && project.link !== '#' && (
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-sm font-medium text-light-primary dark:text-dark-primary hover:underline"
-                >
-                  Voir le projet
-                  <ExternalLink className="w-3.5 h-3.5" />
-                </a>
-              )}
-            </motion.div>
+              </motion.div>
+            </Link>
           );
         })}
       </div>

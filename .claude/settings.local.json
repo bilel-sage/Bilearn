@@ -2,7 +2,16 @@
   "permissions": {
     "allow": [
       "Bash(npm run build:*)",
-      "Bash(npx next dev)"
+      "Bash(npx next dev)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(npm run dev:*)",
+      "Bash(timeout:*)",
+      "WebFetch(domain:localhost)",
+      "Bash(del contentpostsapi-cest-quoi.mdx contentpostsfirewall-cest-quoi.mdx contentpostsdns-cest-quoi.mdx contentpostsssh-cest-quoi.mdx contentpostsvpn-cest-quoi.mdx)",
+      "Bash(git checkout:*)",
+      "Bash(ls:*)"
     ]
   }
 }
